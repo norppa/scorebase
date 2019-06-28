@@ -4,7 +4,6 @@ const cors = require('cors')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const app = express()
-const PORT = 3000
 
 const pool = require('./db.js')
 
@@ -110,4 +109,4 @@ app.post('/api/login', (req, res) => {
         })
 })
 
-app.listen(PORT, () => console.log('running on port', PORT))
+app.listen(process.env.PORT, () => console.log('running on port', process.env.PORT))
