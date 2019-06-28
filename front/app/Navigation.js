@@ -8,7 +8,7 @@ class Navigation extends React.Component {
     state = {
         search: '',
         password: '',
-        menuOpen: true,
+        menuOpen: false,
         loginDialogOpen: false,
     }
     passwordInput = React.createRef();
@@ -45,7 +45,8 @@ class Navigation extends React.Component {
                     ref={this.passwordInput}
                     value={this.state.password}
                     onChange={this.handlePasswordInput}
-                    onBlur={this.closeLoginDialog}/>
+                    onBlur={this.closeLoginDialog}
+                    />
             </form>
             : <ul>
                 <li onClick={this.openLoginDialog}>log in</li>

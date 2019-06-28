@@ -15,14 +15,18 @@ ul {
 }
 
 .navi-menu {
-    margin: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 3.5em;
+    margin: 5px 0px;
     padding: 0px 5px;
     border-radius: 10px;
     border: 1px solid gray;
 }
 
-.navi-menu li {
-    text-align: right;
+.navi-menu form {
+    margin-right: 8px;
 }
 
 input {
