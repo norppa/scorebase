@@ -11,7 +11,7 @@ import './App.css'
 
 import abcjs from 'abcjs'
 
-const api = 'http://localhost:3000/api/'
+const api = 'api'
 const localStorageKey = 'admin'
 toast.configure()
 
@@ -51,7 +51,7 @@ class App extends React.Component {
 
     controls = {
         login: (password) => {
-            axios.post(api + 'login', { password })
+            axios.post(api + '/login', { password })
                 .then(response => {
                     if (response.status === 200) {
                         window.localStorage.setItem(localStorageKey, response.data.token)
@@ -76,7 +76,7 @@ class App extends React.Component {
         },
         select: (id) => () => {
             console.log('select', id)
-            axios.get(api + id)
+            axios.get(api + '/' + id)
                 .then(response => {
                     this.setState((({id, abc}) => ({id, abc})) (response.data))
                 })
