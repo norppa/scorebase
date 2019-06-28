@@ -1,12 +1,13 @@
-var path = require('path');
-var HtmlWebpackPlugin =  require('html-webpack-plugin');
+require('dotenv').config()
+var path = require('path')
+var HtmlWebpackPlugin =  require('html-webpack-plugin')
 
 module.exports = {
     entry : './app/index.js',
     output : {
         path : path.resolve(__dirname , 'dist'),
         filename: 'index_bundle.js',
-        publicPath: '/'
+        publicPath: process.env.PUBLIC_PATH
     },
     module : {
         rules : [
