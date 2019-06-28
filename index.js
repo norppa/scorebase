@@ -90,7 +90,6 @@ app.delete('/api/:id', (req, res) => {
 })
 
 app.post('/api/login', (req, res) => {
-    console.log('/api/login')
     const pwdHash = process.env.PWD_HASH
     console.log(req.body, pwdHash)
 
