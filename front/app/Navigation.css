@@ -1,0 +1,30 @@
+.navi-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+ul {
+    list-style-type: none;
+    cursor: pointer;
+}
+
+#navi-menu-icon {
+    margin: auto 5px;
+    cursor: pointer;
+}
+
+.navi-menu {
+    margin: 5px;
+    padding: 0px 5px;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.navi-menu li {
+    text-align: right;
+}
+
+input {
+    width: 100%;
+}
