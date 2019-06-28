@@ -32,6 +32,7 @@ class Navigation extends React.Component {
         <div className="navi-menu">
             <ul>
                 <li onClick={this.props.controls.edit}> edit </li>
+                <li onClick={this.props.controls.create}> new </li>
                 <li onClick={this.props.controls.logout}> log out </li>
             </ul>
         </div>

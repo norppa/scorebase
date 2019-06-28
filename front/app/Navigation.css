@@ -20,13 +20,24 @@ ul {
     align-items: center;
     min-height: 3.5em;
     margin: 5px 0px;
-    padding: 0px 5px;
+    padding: 0px 10px;
     border-radius: 10px;
     border: 1px solid gray;
 }
 
 .navi-menu form {
     margin-right: 8px;
+}
+
+.navi-menu li {
+    text-align: right;
+    paddin: 2px;
+}
+
+.navi-menu li:last-child {
+    border-top: dotted 1px gray;
+    margin-top: 2px;
+    padding-top: 2px;
 }
 
 input {
