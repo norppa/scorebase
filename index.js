@@ -91,10 +91,10 @@ app.delete('/api/:id', (req, res) => {
 
 app.post('/api/login', (req, res) => {
     const pwdHash = process.env.PWD_HASH
-    console.log(req.body, pwdHash)
 
     return bcrypt.compare(req.body.password, pwdHash)
         .then(pwdCorrect => {
+          console.log('correct')
             if (pwdCorrect) {
                 const token = jwt.sign({user: 'admin'}, process.env.SECRET)
                 return res.status(200).send({token})
@@ -103,7 +103,7 @@ app.post('/api/login', (req, res) => {
             }
         })
         .catch(error => {
-            console.error(error)
+            console.error("caught an error", error)
             res.status(500).send({error: error.toString()})
         })
 })

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 
+import constants from './constants'
 import Header from './Header'
 import Navigation from './Navigation'
 import AbcViewer from './AbcViewer'
@@ -11,7 +12,7 @@ import './App.css'
 
 import abcjs from 'abcjs'
 
-const api = 'api'
+const { api, skeletonAbc } = constants
 const localStorageKey = 'admin'
 toast.configure()
 
@@ -26,6 +27,7 @@ class App extends React.Component {
 
 
     componentDidMount() {
+      console.log('env:', process.env.NODE_ENV)
         const token = window.localStorage.getItem(localStorageKey)
         if (token) {
             this.setState({ auth: token })
@@ -93,7 +95,9 @@ class App extends React.Component {
                 .then(response => console.log(response))
                 .catch(error => console.error(error))
         },
-        create: () => console.log('create'),
+        create: () => {
+          this.setState({ editMode: true, id: 'new', abc: skeletonAbc })
+        },
         handleAbcChange: (event) => this.setState({ abc: event.target.value }),
     }
 

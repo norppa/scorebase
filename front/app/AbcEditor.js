@@ -30,7 +30,7 @@ class AbcEditor extends React.Component{
 
             <div className="AbcEditor">
                 <div className="editor-controls">
-                    <button>save</button>
+                    <button onClick={this.props.controls.save}>save</button>
                     <button onClick={this.props.controls.cancel}>cancel</button>
                 </div>
                 <textarea id="abc"
