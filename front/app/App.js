@@ -127,7 +127,6 @@ class App extends React.Component {
                             controls={this.controls}
                             editMode={this.state.editMode}
                             auth={this.state.auth} />
-                        <div>frontpage</div>
                     </div>
                 )
             }

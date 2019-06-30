@@ -1,10 +1,11 @@
 import React from 'react'
+import constants from './constants'
 
 class Header extends React.Component {
     render () {
         return (
                 <div className="Header">
-                    Header
+                    <h1>{constants.siteHeader}</h1>
                 </div>
         )
     }
