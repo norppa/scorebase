@@ -45,12 +45,6 @@ class App extends React.Component {
             .catch(error => console.error(error))
     }
 
-    saveSong = () => {
-        axios.post(api, {id: this.state.id, abc: this.state.abc})
-        .then(response => console.log(response))
-        .catch(error => console.error(error))
-    }
-
     controls = {
         login: (password) => {
             axios.post(api + '/login', { password })
@@ -92,7 +86,9 @@ class App extends React.Component {
         },
         save: () => {
             axios.post(api, {id: this.state.id, abc: this.state.abc})
-                .then(response => console.log(response))
+                .then(response => {
+                  toast.success('Save successful')
+                })
                 .catch(error => console.error(error))
         },
         create: () => {
