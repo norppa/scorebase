@@ -72,6 +72,7 @@ class Navigation extends React.Component {
                     {
                         this.props.tunes
                             .filter(tune => tune.name.toLowerCase().includes(this.state.search.toLowerCase()))
+                            .sort((a,b) => a.name < b.name ? -1 : 1)
                             .map(song => (
                                 <li key={song.id}
                                     onClick={this.props.controls.select(song.id)}>
