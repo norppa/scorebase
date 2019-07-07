@@ -12,22 +12,6 @@ app.use(express.json())
 
 app.use(express.static('front/dist'))
 
-app.get('/upload', (req, res) => {
-    const fs = require('fs')
-    fs.readFile('./Wei-Hai-Wei.abc', 'utf-8', (error, result) => {
-        if (error) return console.error(error)
-        console.log(result)
-        const song = {
-            name: 'Wei-Hai-Wei',
-            abc: result
-        }
-        pool.query('INSERT INTO m_abc SET ?', song, (error, results) => {
-            console.log(error, results)
-        })
-    })
-    res.send('ok')
-})
-
 app.get('/api', (req, res) => {
     pool.query('SELECT id, name FROM m_abc', (error, result) => {
         if (error) {
