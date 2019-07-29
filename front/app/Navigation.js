@@ -26,13 +26,27 @@ class Navigation extends React.Component {
         this.setState({ password: '', login: false })
     }
 
+    pressDelete = () => {
+        const tunename = this.props.tunes.find(x => x.id === this.props.controls.getSelected()).name
+        if (confirm(`Are you sure you want to delete "${tunename}"`)) {
+            this.setState({menuOpen: false})
+            this.props.controls.delete()
+        }
+    }
+
 
 
     AdminMenu = () => (
         <div className="navi-menu">
             <ul>
-                <li onClick={this.props.controls.edit}> edit </li>
-                <li onClick={this.props.controls.create}> new </li>
+
+                { this.props.controls.getSelected()
+                    ? [
+                        <li key="navigation-edit" onClick={this.props.controls.edit}> edit </li>,
+                        <li key="navigation-delete" onClick={this.pressDelete}> delete </li>
+                    ]
+                    : <li onClick={this.props.controls.create}> new </li>
+                }
                 <li onClick={this.props.controls.logout}> log out </li>
             </ul>
         </div>

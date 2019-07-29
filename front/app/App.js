@@ -37,11 +37,7 @@ class App extends React.Component {
 
     fetchSongList = () => {
         axios.get(api)
-            .then(res => {
-                console.log('response', res)
-                return res
-            })
-            .then(response => this.setState({ tunes: response.data }, () => console.log(this.state)))
+            .then(response => this.setState({ tunes: response.data }))
             .catch(error => console.error(error))
     }
 
@@ -88,13 +84,24 @@ class App extends React.Component {
             axios.post(api, {id: this.state.id, abc: this.state.abc})
                 .then(response => {
                   toast.success('Save successful')
+                  console.log('response', response)
                 })
                 .catch(error => console.error(error))
+        },
+        delete: () => {
+            axios.delete(api + '/' + this.state.id)
+                .then(response => {
+                    toast.success('Delete successful')
+                    axios.get(api)
+                        .then(response => this.setState({ tunes: response.data, editMode: false, id: undefined }))
+                        .catch(error => console.error(error))
+                })
         },
         create: () => {
           this.setState({ editMode: true, id: 'new', abc: skeletonAbc })
         },
         handleAbcChange: (event) => this.setState({ abc: event.target.value }),
+        getSelected: () => this.state.id
     }
 
     render() {
@@ -109,6 +116,7 @@ class App extends React.Component {
                     <div className="App">
                         <Header />
                         <Navigation tunes={this.state.tunes}
+                            id={this.state.id}
                             controls={this.controls}
                             editMode={this.state.editMode}
                             auth={this.state.auth} />
