@@ -85,6 +85,9 @@ class App extends React.Component {
                 .then(response => {
                   toast.success('Save successful')
                   console.log('response', response)
+                  if (this.state.id === 'new') {
+                      this.setState({ id: response.data.insertId })
+                  }
                 })
                 .catch(error => console.error(error))
         },
