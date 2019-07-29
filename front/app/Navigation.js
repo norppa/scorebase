@@ -73,6 +73,7 @@ class Navigation extends React.Component {
     Menu = () => { return this.props.auth ? <this.AdminMenu /> : <this.UserMenu /> }
 
     render () {
+        const selectedId = this.props.controls.getSelected()
         return (
             <div className="Navigation">
                 <div className="navi-row">
@@ -89,6 +90,7 @@ class Navigation extends React.Component {
                             .sort((a,b) => a.name < b.name ? -1 : 1)
                             .map(song => (
                                 <li key={song.id}
+                                    className={song.id === selectedId ? 'selected' : ''}
                                     onClick={this.props.controls.select(song.id)}>
                                         {song.name ? song.name : '<no name>'}
                                 </li>))

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Pro:400,700');
+@import url('https://fonts.googleapis.com/css?family=Alegreya:400,700');
+
 .navi-row {
     display: flex;
     align-items: center;
@@ -5,8 +8,22 @@
 }
 
 ul {
+    font-family: 'Alegreya';
+    font-size: 1.05em;
     list-style-type: none;
     cursor: pointer;
+    padding: 0;
+}
+
+li:hover {
+    background-color: #EEE;
+    color: #444;
+    font-weight: bold;
+}
+
+li.selected {
+    color: black;
+    font-weight: bold;
 }
 
 #navi-menu-icon {
