@@ -103,7 +103,7 @@ class App extends React.Component {
         create: () => {
           this.setState({ editMode: true, id: 'new', abc: skeletonAbc })
         },
-        handleAbcChange: (event) => this.setState({ abc: event.target.value }),
+        handleAbcChange: (abc) => this.setState({ abc }),
         getSelected: () => this.state.id
     }
 
