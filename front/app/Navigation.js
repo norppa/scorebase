@@ -34,8 +34,6 @@ class Navigation extends React.Component {
         }
     }
 
-
-
     AdminMenu = () => (
         <div className="navi-menu">
             <ul>
@@ -45,8 +43,9 @@ class Navigation extends React.Component {
                         <li key="navigation-edit" onClick={this.props.controls.edit}> edit </li>,
                         <li key="navigation-delete" onClick={this.pressDelete}> delete </li>
                     ]
-                    : <li onClick={this.props.controls.create}> new </li>
+                    : null
                 }
+                <li onClick={this.props.controls.create}> new </li>
                 <li onClick={this.props.controls.logout}> log out </li>
             </ul>
         </div>

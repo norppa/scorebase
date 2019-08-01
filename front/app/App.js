@@ -22,7 +22,8 @@ class App extends React.Component {
         editMode: false,
         tunes: [],
         id: undefined,
-        abc: ''
+        abc: '',
+        abcChanged: false,
     }
 
 
@@ -67,16 +68,15 @@ class App extends React.Component {
             toast.success('Logged out')
         },
         select: (id) => () => {
-            console.log('select', id)
             axios.get(api + '/' + id)
                 .then(response => {
-                    this.setState((({id, abc}) => ({id, abc})) (response.data))
+                    this.setState((({id, abc}) => ({id, abc, abcChanged: false})) (response.data))
                 })
         },
         edit: () => {
             this.setState({ editMode: true })
         },
-        cancel: () => {
+        exitEditMode: () => {
             this.setState({ editMode: false })
             this.controls.select(this.state.id)()
         },
@@ -103,7 +103,8 @@ class App extends React.Component {
         create: () => {
           this.setState({ editMode: true, id: 'new', abc: skeletonAbc })
         },
-        handleAbcChange: (abc) => this.setState({ abc }),
+        handleAbcChange: (abc) => this.setState({ abc, abcChanged: true }),
+        isAbcChanged: () => this.state.abcChanged,
         getSelected: () => this.state.id
     }
 

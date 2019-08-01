@@ -1,8 +1,6 @@
 import React from 'react'
 import './AbcEditor.css'
 
-import AdminBar from './AdminBar'
-
 import abcjs from 'abcjs'
 
 class AbcEditor extends React.Component{
@@ -35,15 +33,22 @@ class AbcEditor extends React.Component{
         this.props.controls.handleAbcChange(abc)
         this.setState({showAddBlockLyrics: false, blockLyrics: ''})
     }
+    handleExitClick = () => {
+        const msg = 'Unsaved changes! Are you sure you want to exit?'
+        if (!this.props.controls.isAbcChanged() || confirm(msg)) {
+            this.props.controls.exitEditMode()
+        }
+    }
 
     render() {
         return (
 
             <div className="AbcEditor">
                 <div className="editor-controls">
-                    <button onClick={this.props.controls.save}>save</button>
-                    <button onClick={this.props.controls.cancel}>cancel</button>
+                    <button onClick={this.props.controls.save}
+                        disabled={!this.props.controls.isAbcChanged()}>save</button>
                     <button onClick={this.showAddBlockLyrics}>add lyrics</button>
+                    <button onClick={this.handleExitClick}>exit</button>
                 </div>
                 <div id="input">
                     <textarea id="abc"
