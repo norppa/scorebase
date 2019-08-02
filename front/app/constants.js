@@ -1,5 +1,5 @@
 const constants = {
-  // siteHeader: '--- jtthaavi music database ---',
+  siteHeader: '--- jtthaavi music database ---',
   skeletonAbc: 'X:0\nT:new tune\nC:composer\nM:4/4\nL:1/8\nK:C maj\nC'
 }
 

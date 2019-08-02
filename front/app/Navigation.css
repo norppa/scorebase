@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya:400,700');
+
 .Navigation {
     margin-left: 5px;
+    font-family: 'Alegreya';
 }
 
 .navi-row {

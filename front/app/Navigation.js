@@ -100,7 +100,7 @@ class Navigation extends React.Component {
         <div className="navi-menu">
             <ul>
                 <li>{this.Transposer()}</li>
-                <li>{this.Login()}</li>
+                <li className="clickable">{this.Login()}</li>
             </ul>
         </div>
     )
