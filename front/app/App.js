@@ -1,10 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
+import SplitPane from 'react-split-pane'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 import constants from './constants'
-import Header from './Header'
 import Navigation from './Navigation'
 import AbcViewer from './AbcViewer'
 import AbcEditor from './AbcEditor'
@@ -115,32 +115,24 @@ class App extends React.Component {
                         controls={this.controls} />
             )
         } else {
-            if (this.state.id) { // view selected tune
-                return (
-                    <div className="App">
-                        <Header />
+            return (
+                <div className="App">
+                    <SplitPane
+                        className="split-pane"
+                        split="vertical"
+                        defaultSize={200}>
                         <Navigation tunes={this.state.tunes}
                             id={this.state.id}
                             controls={this.controls}
                             editMode={this.state.editMode}
                             auth={this.state.auth} />
-                        <AbcViewer abc={this.state.abc}/>
-                    </div>
+                        { this.state.id
+                        ? <AbcViewer abc={this.state.abc}/>
+                        : <h1>{constants.siteHeader}</h1> }
+                    </SplitPane>
+                </div>
             )
-        } else { // no selected tune, show frontpage
-                return (
-                    <div className="App">
-                        <Header />
-                        <Navigation tunes={this.state.tunes}
-                            controls={this.controls}
-                            editMode={this.state.editMode}
-                            auth={this.state.auth} />
-                    </div>
-                )
-            }
         }
-
-
     }
 }
 

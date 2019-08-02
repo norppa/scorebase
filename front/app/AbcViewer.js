@@ -9,11 +9,12 @@ class AbcViewer extends React.Component {
 
     componentDidUpdate() {
         abcjs.renderAbc('sheet', this.props.abc, {
-            staffwidth: 850
+            staffwidth: 600
         })
     }
 
     render() {
+        console.log("Your screen resolution is: " + document.documentElement.clientWidth + "x" + document.documentElement.clientHeight)
         return (
             <div className="AbcViewer">
                 <div id="sheet"></div>

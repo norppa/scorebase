@@ -1,26 +1,49 @@
-.App {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-columns: 200px auto auto 200px;
+.split-pane {
+    margin: 5px;
 }
 
-.Header {
-    grid-row: 1 / span 1;
-    grid-column: 1 / span 4;
-    text-align: center;
-}
-
-.Header h1 {
+h1 {
   font-family: 'Courier New';
   font-size: 1.5em;
   font-weight: bold;
-  margin: 0px;
+  margin: 40px;
+  text-align:center;
 }
 
-.Navigation {
-    grid-column: 1 / span 1;
+/* REACT-SPLIT-PANE */
+
+.Resizer {
+    background: white;
+    opacity: .2;
+    z-index: 1;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
 }
 
-.AbcViewer {
-    grid-column: 2 / span 3;
+.Resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+}
+
+.Resizer.vertical {
+    width: 11px;
+    margin: 0 -5px;
+    border-left: 5px solid rgba(255, 255, 255, 0);
+    border-right: 5px solid rgba(255, 255, 255, 0);
+    cursor: col-resize;
+}
+
+.Resizer.vertical:hover {
+    border-left: 5px solid rgba(0, 0, 0, 0.5);
+    border-right: 5px solid rgba(0, 0, 0, 0.5);
+}
+.Resizer.disabled {
+  cursor: not-allowed;
+}
+.Resizer.disabled:hover {
+  border-color: transparent;
 }
