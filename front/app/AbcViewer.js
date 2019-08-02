@@ -9,7 +9,8 @@ class AbcViewer extends React.Component {
 
     componentDidUpdate() {
         abcjs.renderAbc('sheet', this.props.abc, {
-            staffwidth: 1000
+            staffwidth: 1000,
+            visualTranspose: this.props.transpose
         })
     }
 

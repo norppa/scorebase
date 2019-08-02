@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaPlusCircle, FaMinusCircle } from 'react-icons/fa'
 
 import './Navigation.css'
 
@@ -23,7 +23,7 @@ class Navigation extends React.Component {
     submitPassword = (event) => {
         event.preventDefault()
         this.props.controls.login(this.state.password)
-        this.setState({ password: '', login: false })
+        this.setState({ password: '', loginDialogOpen: false })
     }
 
     pressDelete = () => {
@@ -34,38 +34,74 @@ class Navigation extends React.Component {
         }
     }
 
+    transpose = (semitones) => () => this.props.controls.transpose(semitones)
+
+    Transposer = () => {
+        const className = 'Transposer ' + (this.props.controls.getSelected() ? 'enabled' : 'disabled')
+        console.log(this.props.controls.getSelected(), className)
+        return (
+            <div className={className}>
+                <FaPlusCircle className="transpose-btn"
+                    style={{verticalAlign: 'middle'}}
+                    onClick={this.transpose(1)} />
+                <FaMinusCircle className="transpose-btn"
+                    style={{verticalAlign: 'middle'}}
+                    onClick={this.transpose(-1)} />
+                <span className="transpose-label">transpose</span>
+            </div>
+        )
+    }
+
+
+    Login = () => {
+        if (this.state.loginDialogOpen) {
+            return (
+                <form onSubmit={this.submitPassword}>
+                    <input type="password"
+                        ref={this.passwordInput}
+                        value={this.state.password}
+                        onChange={this.handlePasswordInput}
+                        onBlur={this.closeLoginDialog}
+                        />
+                </form>
+            )
+        } else {
+            return (
+                <span onClick={this.openLoginDialog}>log in</span>
+            )
+        }
+    }
+
     AdminMenu = () => (
         <div className="navi-menu">
             <ul>
+                <li onClick={this.props.controls.create}
+                    className="clickable"> new </li>
 
                 { this.props.controls.getSelected()
                     ? [
-                        <li key="navigation-edit" onClick={this.props.controls.edit}> edit </li>,
-                        <li key="navigation-delete" onClick={this.pressDelete}> delete </li>
+                        <li key="navigation-edit"
+                            onClick={this.props.controls.edit}
+                            className="clickable"> edit </li>,
+                        <li key="navigation-delete"
+                            onClick={this.pressDelete}
+                            className="clickable"> delete </li>,
+                        <li>{this.Transposer()}</li>
                     ]
                     : null
                 }
-                <li onClick={this.props.controls.create}> new </li>
-                <li onClick={this.props.controls.logout}> log out </li>
+                <li onClick={this.props.controls.logout}
+                    className="clickable"> log out </li>
             </ul>
         </div>
     )
 
     UserMenu = () => (
         <div className="navi-menu">
-            {this.state.loginDialogOpen
-            ? <form onSubmit={this.submitPassword}>
-                <input type="password"
-                    ref={this.passwordInput}
-                    value={this.state.password}
-                    onChange={this.handlePasswordInput}
-                    onBlur={this.closeLoginDialog}
-                    />
-            </form>
-            : <ul>
-                <li onClick={this.openLoginDialog}>log in</li>
-            </ul> }
-
+            <ul>
+                <li>{this.Transposer()}</li>
+                <li>{this.Login()}</li>
+            </ul>
         </div>
     )
 
@@ -82,7 +118,7 @@ class Navigation extends React.Component {
 
                 { this.state.menuOpen ? <this.Menu /> : null }
 
-                <ul>
+                <ul className="navi-list">
                     {
                         this.props.tunes
                             .filter(tune => tune.name.toLowerCase().includes(this.state.search.toLowerCase()))

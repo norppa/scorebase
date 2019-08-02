@@ -24,6 +24,7 @@ class App extends React.Component {
         id: undefined,
         abc: '',
         abcChanged: false,
+        transpose: 0
     }
 
 
@@ -103,6 +104,7 @@ class App extends React.Component {
         create: () => {
           this.setState({ editMode: true, id: 'new', abc: skeletonAbc })
         },
+        transpose: (semitones) => this.setState({transpose: this.state.transpose + semitones}),
         handleAbcChange: (abc) => this.setState({ abc, abcChanged: true }),
         isAbcChanged: () => this.state.abcChanged,
         getSelected: () => this.state.id
@@ -126,7 +128,8 @@ class App extends React.Component {
                                 editMode={this.state.editMode}
                                 auth={this.state.auth} />
                             { this.state.id
-                            ? <AbcViewer abc={this.state.abc}/>
+                            ? <AbcViewer abc={this.state.abc}
+                                transpose={this.state.transpose}/>
                             : <h1>{constants.siteHeader}</h1> }
                     </SplitPane>
                 </div>
