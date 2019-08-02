@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Crimson+Pro:400,700');
-@import url('https://fonts.googleapis.com/css?family=Alegreya:400,700');
-
+.Navigation {
+    margin-left: 5px;
+}
 .navi-row {
     display: flex;
     align-items: center;
