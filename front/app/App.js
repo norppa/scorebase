@@ -118,17 +118,16 @@ class App extends React.Component {
             return (
                 <div className="App">
                     <SplitPane
-                        className="split-pane"
                         split="vertical"
                         defaultSize={200}>
-                        <Navigation tunes={this.state.tunes}
-                            id={this.state.id}
-                            controls={this.controls}
-                            editMode={this.state.editMode}
-                            auth={this.state.auth} />
-                        { this.state.id
-                        ? <AbcViewer abc={this.state.abc}/>
-                        : <h1>{constants.siteHeader}</h1> }
+                            <Navigation tunes={this.state.tunes}
+                                id={this.state.id}
+                                controls={this.controls}
+                                editMode={this.state.editMode}
+                                auth={this.state.auth} />
+                            { this.state.id
+                            ? <AbcViewer abc={this.state.abc}/>
+                            : <h1>{constants.siteHeader}</h1> }
                     </SplitPane>
                 </div>
             )

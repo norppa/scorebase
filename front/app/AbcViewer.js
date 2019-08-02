@@ -9,7 +9,7 @@ class AbcViewer extends React.Component {
 
     componentDidUpdate() {
         abcjs.renderAbc('sheet', this.props.abc, {
-            staffwidth: 600
+            staffwidth: 1000
         })
     }
 

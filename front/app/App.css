@@ -1,5 +1,7 @@
-.split-pane {
-    margin: 5px;
+.Pane {
+    overflow: auto;
+}::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
 }
 
 h1 {
