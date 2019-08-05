@@ -18,7 +18,6 @@ app.get('/api', (req, res) => {
             console.error(error)
             return res.status(500).send(error)
         }
-        console.log(result)
         return res.send(result)
     })
 })
@@ -33,7 +32,6 @@ app.get('/api/:id', (req, res) => {
 
 app.post('/api', (req, res) => {
     let song = req.body
-    console.log('received post request', song)
     if (!song.id || !/^(new|\d+$)/.test(song.id)) return res.status(400).send('invalid id')
     if (!song.abc) return res.status(400).send('missing abc field')
 
@@ -51,8 +49,7 @@ app.post('/api', (req, res) => {
         })
     } else {
         if (!song.name) {
-            song.name = song.abc.split('\n').find(x => x.substring(0,2) === 'T:').substring(2);
-            console.log('name not found, using', song.name)
+            song.name = song.abc.split('\n').find(x => x.substring(0,2) === 'T:').substring(2)
         }
         const params = [song.name, song.abc, song.id]
         pool.query('UPDATE m_abc SET name = ?, abc = ? WHERE id = ?', params, (error, result) => {
@@ -78,7 +75,6 @@ app.post('/api/login', (req, res) => {
 
     return bcrypt.compare(req.body.password, pwdHash)
         .then(pwdCorrect => {
-          console.log('correct')
             if (pwdCorrect) {
                 const token = jwt.sign({user: 'admin'}, process.env.SECRET)
                 return res.status(200).send({token})
