@@ -1,5 +1,6 @@
 import React from 'react'
 import './AbcEditor.css'
+import SplitPane from 'react-split-pane'
 
 import abcjs from 'abcjs'
 
@@ -42,31 +43,33 @@ class AbcEditor extends React.Component{
 
     render() {
         return (
-
             <div className="AbcEditor">
-                <div className="editor-controls">
-                    <button onClick={this.props.controls.save}
-                        disabled={!this.props.controls.isAbcChanged()}>save</button>
-                    <button onClick={this.showAddBlockLyrics}>add lyrics</button>
-                    <button onClick={this.handleExitClick}>exit</button>
-                </div>
-                <div id="input">
-                    <textarea id="abc"
-                        value={this.props.abc}
-                        onChange={this.handleAbcChange}/>
-                    <div id="add-lyrics-div"
-                        className={this.state.showAddBlockLyrics ? '' : 'hidden'}>
-                        <button id="add-lyrics-btn"
-                            onClick={this.addBlockLyricsToAbc}>REPLACE LYRICS</button>
-                        <textarea
-                            value={this.state.lyrics}
-                            onChange={this.handleLyricsChange} />
+                <SplitPane split="vertical"
+                    defaultSize="50%">
+                    <div id="input">
+                        <div className="editor-controls">
+                            <button onClick={this.props.controls.save}
+                                disabled={!this.props.controls.isAbcChanged()}>save</button>
+                            <button onClick={this.showAddBlockLyrics}>add lyrics</button>
+                            <button onClick={this.handleExitClick}>exit</button>
+                        </div>
+                        <textarea id="abc"
+                            value={this.props.abc}
+                            onChange={this.handleAbcChange}/>
+                        <div id="add-lyrics-div"
+                            className={this.state.showAddBlockLyrics ? '' : 'hidden'}>
+                            <button id="add-lyrics-btn"
+                                onClick={this.addBlockLyricsToAbc}>REPLACE LYRICS</button>
+                            <textarea
+                                value={this.state.lyrics}
+                                onChange={this.handleLyricsChange} />
+                        </div>
                     </div>
-                </div>
-                <div id="output">
-                    <div id="warnings"></div>
-                    <div id="sheet"></div>
-                </div>
+                    <div id="output">
+                        <div id="sheet"></div>
+                        <div id="warnings"></div>
+                    </div>
+                </SplitPane>
             </div>
         )
     }

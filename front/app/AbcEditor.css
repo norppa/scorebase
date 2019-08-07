@@ -1,25 +1,7 @@
-.AbcEditor {
-    display: grid;
-    grid-template-rows: 20px auto;
-    grid-template-columns: 1fr 1fr;
-}
-
-.editor-controls {
-    grid-row: 1 / span 1;
-    grid-column: 1 / span 2;
-}
-
-#input {
-    grid-row: 2 / span 1;
-    grid-column: 1 / span 1;
-}
-
 #abc, #add-lyrics-div > textarea {
     padding: 5px;
-    outline: none;
-    resize: none;
-    min-width: 50em;
-    min-height: 50em;
+    width: calc(100% - 15px);
+    min-height: 40em;
 }
 
 #add-lyrics-btn {

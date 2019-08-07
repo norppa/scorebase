@@ -92,7 +92,8 @@ class Navigation extends React.Component {
                         <li key="navigation-delete"
                             onClick={this.pressDelete}
                             className="clickable"> delete </li>,
-                        <li>{this.Transposer()}</li>
+                        <li key="navigation-transpose">{this.Transposer()}</li>,
+                        <li key="navigation-export" onClick={this.exportToPdf}> export to pdf </li>
                     ]
                     : null
                 }
@@ -105,8 +106,13 @@ class Navigation extends React.Component {
     UserMenu = () => (
         <div className="navi-menu">
             <ul>
-                <li>{this.Transposer()}</li>
-                <li onClick={this.exportToPdf}> export to pdf </li>
+                { this.props.controls.getSelected()
+                ? [
+                    <li key="navigation-transpose">{this.Transposer()}</li>,
+                    <li key="navigation-export" onClick={this.exportToPdf}> export to pdf </li>
+                ]
+                : null
+            }
                 <li className="clickable">{this.Login()}</li>
             </ul>
         </div>
