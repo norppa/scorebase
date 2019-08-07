@@ -15,7 +15,6 @@ class AbcViewer extends React.Component {
     }
 
     render() {
-        console.log("Your screen resolution is: " + document.documentElement.clientWidth + "x" + document.documentElement.clientHeight)
         return (
             <div className="AbcViewer">
                 <div id="sheet"></div>

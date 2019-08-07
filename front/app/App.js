@@ -9,6 +9,7 @@ import Navigation from './Navigation'
 import AbcViewer from './AbcViewer'
 import AbcEditor from './AbcEditor'
 import './App.css'
+import './index.css'
 
 import abcjs from 'abcjs'
 

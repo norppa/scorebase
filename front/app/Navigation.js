@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { FaBars, FaPlusCircle, FaMinusCircle } from 'react-icons/fa'
 
+import exportToPdf from './exportToPdf'
+
 import './Navigation.css'
 
 class Navigation extends React.Component {
@@ -52,6 +54,10 @@ class Navigation extends React.Component {
         )
     }
 
+    exportToPdf = () => {
+        const name = this.props.tunes.find(x => x.id === this.props.id).name
+        exportToPdf(name)
+    }
 
     Login = () => {
         if (this.state.loginDialogOpen) {
@@ -100,6 +106,7 @@ class Navigation extends React.Component {
         <div className="navi-menu">
             <ul>
                 <li>{this.Transposer()}</li>
+                <li onClick={this.exportToPdf}> export to pdf </li>
                 <li className="clickable">{this.Login()}</li>
             </ul>
         </div>
