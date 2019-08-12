@@ -40,7 +40,6 @@ class Navigation extends React.Component {
 
     Transposer = () => {
         const className = 'Transposer ' + (this.props.controls.getSelected() ? 'enabled' : 'disabled')
-        console.log(this.props.controls.getSelected(), className)
         return (
             <div className={className}>
                 <FaPlusCircle className="transpose-btn"
@@ -93,10 +92,11 @@ class Navigation extends React.Component {
                             onClick={this.pressDelete}
                             className="clickable"> delete </li>,
                         <li key="navigation-transpose">{this.Transposer()}</li>,
-                        <li key="navigation-export" onClick={this.exportToPdf}> export to pdf </li>
+                        <li key="navigation-export" onClick={this.exportToPdf}> export to pdf </li>,
                     ]
                     : null
                 }
+                <li key="navigation-random" onClick={this.props.controls.selectRandom}>random tune</li>
                 <li onClick={this.props.controls.logout}
                     className="clickable"> log out </li>
             </ul>
@@ -109,10 +109,12 @@ class Navigation extends React.Component {
                 { this.props.controls.getSelected()
                 ? [
                     <li key="navigation-transpose">{this.Transposer()}</li>,
-                    <li key="navigation-export" onClick={this.exportToPdf}> export to pdf </li>
+                    <li key="navigation-export" onClick={this.exportToPdf}> export to pdf </li>,
                 ]
                 : null
             }
+
+                <li key="navigation-random" onClick={this.props.controls.selectRandom}>random tune</li>
                 <li className="clickable">{this.Login()}</li>
             </ul>
         </div>

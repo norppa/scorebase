@@ -70,6 +70,7 @@ class App extends React.Component {
             toast.success('Logged out')
         },
         select: (id) => () => {
+            console.log('select', id)
             axios.get(api + '/' + id)
                 .then(response => {
                     this.setState((({id, abc}) => ({id, abc, abcChanged: false})) (response.data))
@@ -109,7 +110,12 @@ class App extends React.Component {
         transpose: (semitones) => this.setState({transpose: this.state.transpose + semitones}),
         handleAbcChange: (abc) => this.setState({ abc, abcChanged: true }),
         isAbcChanged: () => this.state.abcChanged,
-        getSelected: () => this.state.id
+        getSelected: () => this.state.id,
+        selectRandom: () => {
+            const randomIndex = Math.floor(Math.random() * this.state.tunes.length)
+                console.log('ranbdom', randomIndex)
+            this.controls.select(this.state.tunes[randomIndex].id)()
+        },
     }
 
     render() {
