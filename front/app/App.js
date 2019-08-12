@@ -86,10 +86,11 @@ class App extends React.Component {
             axios.post(api, {id: this.state.id, abc: this.state.abc})
                 .then(response => {
                   toast.success('Save successful')
-                  console.log('response', response)
+                  const newState = { abcChanged: false }
                   if (this.state.id === 'new') {
-                      this.setState({ id: response.data.insertId })
+                      newState.id = response.data.insertId
                   }
+                  this.setState(newState)
                 })
                 .catch(error => console.error(error))
         },
