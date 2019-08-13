@@ -70,10 +70,9 @@ class App extends React.Component {
             toast.success('Logged out')
         },
         select: (id) => () => {
-            console.log('select', id)
             axios.get(api + '/' + id)
                 .then(response => {
-                    this.setState((({id, abc}) => ({id, abc, abcChanged: false})) (response.data))
+                    this.setState((({id, abc}) => ({id, abc, abcChanged: false, transpose: 0})) (response.data))
                 })
         },
         edit: () => {
@@ -113,7 +112,6 @@ class App extends React.Component {
         getSelected: () => this.state.id,
         selectRandom: () => {
             const randomIndex = Math.floor(Math.random() * this.state.tunes.length)
-                console.log('ranbdom', randomIndex)
             this.controls.select(this.state.tunes[randomIndex].id)()
         },
     }
